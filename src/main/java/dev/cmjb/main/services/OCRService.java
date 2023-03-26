@@ -15,7 +15,7 @@ public class OCRService {
 
     public String toString(File targetFile) {
         Tesseract tesseract = new Tesseract();
-        tesseract.setDatapath("src/main/resources/ocrdata");
+        tesseract.setDatapath("/usr/share/tesseract-ocr/4.00/tessdata/");
         tesseract.setLanguage("eng");
         tesseract.setPageSegMode(1);
         tesseract.setOcrEngineMode(1);
