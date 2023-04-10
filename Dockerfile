@@ -9,9 +9,9 @@ WORKDIR /tmp
 
 RUN ./gradlew build
 
-COPY /tmp/build/libs/main-0.0.1-SNAPSHOT.jar /app.jar
+RUN cp /tmp/build/libs/main-0.0.1-SNAPSHOT.jar /app.jar
 
-#COPY ./build/libs/main-0.0.1-SNAPSHOT.jar app.jar
+RUN rm -rf /tmp/*
 
 WORKDIR /
 
