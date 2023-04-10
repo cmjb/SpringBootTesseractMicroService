@@ -1,4 +1,4 @@
-# SpringBootTesseractMicroService
+# SpringBootTesseractMicroService [![Docker](https://github.com/cmjb/SpringBootTesseractMicroService/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/cmjb/SpringBootTesseractMicroService/actions/workflows/docker-publish.yml) [![Java CI with Gradle](https://github.com/cmjb/SpringBootTesseractMicroService/actions/workflows/gradle.yml/badge.svg)](https://github.com/cmjb/SpringBootTesseractMicroService/actions/workflows/gradle.yml)
 
 This is a microservice running on Spring Boot. This microservice uses the Tesseract OCR (Optical Character Recognition) application to scan images and extract text from them.
 
