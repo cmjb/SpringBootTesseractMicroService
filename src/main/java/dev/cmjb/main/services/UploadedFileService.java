@@ -3,9 +3,12 @@ package dev.cmjb.main.services;
 import dev.cmjb.main.exceptions.BaseException;
 import dev.cmjb.main.exceptions.StorageFileNotFoundException;
 import dev.cmjb.main.properties.StorageProperties;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,6 +20,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Objects;
 import java.util.stream.Stream;
 
 @Service
@@ -36,7 +40,7 @@ public class UploadedFileService implements IStorageService {
                 throw new BaseException("Failed to store empty file.");
             }
             Path destinationFile = this.rootLocation.resolve(
-                            Paths.get(file.getOriginalFilename()))
+                            Paths.get(Objects.requireNonNull(file.getOriginalFilename())))
                     .normalize().toAbsolutePath();
             if (!destinationFile.getParent().equals(this.rootLocation.toAbsolutePath())) {
                 // This is a security check
@@ -96,7 +100,7 @@ public class UploadedFileService implements IStorageService {
     @Override
     public void init() {
         try {
-            Files.createDirectory(rootLocation);
+            Files.createDirectories(rootLocation);
         } catch (IOException e) {
             throw new BaseException("Could not initialize storage", e);
         }

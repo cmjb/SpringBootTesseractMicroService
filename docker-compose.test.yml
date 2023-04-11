@@ -1,0 +1,11 @@
+version: '3.1'
+
+services:
+
+  app:
+    image: cmjb/ocr-microservice
+    build:
+      context: .
+    ports:
+      - 8050:8080
+    entrypoint: ['./gradlew', 'test']
