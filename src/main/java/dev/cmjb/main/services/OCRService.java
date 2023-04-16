@@ -14,8 +14,17 @@ public class OCRService {
     }
 
     public String toString(File targetFile) {
+
+        String os = System.getProperty("os.name");
+
+        // FIXME: Get data from Environment
         Tesseract tesseract = new Tesseract();
-        tesseract.setDatapath("/usr/share/tesseract-ocr/4.00/tessdata/");
+        if(os.startsWith("Windows")){
+            tesseract.setDatapath("C:\\Tesseract");
+        }else {
+            tesseract.setDatapath("/usr/share/tesseract-ocr/4.00/tessdata/");
+        }
+
         tesseract.setLanguage("eng");
         tesseract.setPageSegMode(1);
         tesseract.setOcrEngineMode(1);
