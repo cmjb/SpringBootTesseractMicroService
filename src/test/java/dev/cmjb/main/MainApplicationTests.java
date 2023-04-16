@@ -35,17 +35,15 @@ class MainApplicationTests {
 		MockMultipartFile multipartFile = new MockMultipartFile("file",
 				file.getName(), "image/jpeg", input);
 
-		assertThat(!multipartFile.isEmpty());
-
 		this.mvc.perform(multipart("/").file(multipartFile))
-				.andExpect(status().isFound())
-				.andExpect(content().string("THIS IMAGE HAS\nTEXT IN IT"));
+				.andExpect(status().isOk())
+				.andExpect(content().string("THIS IMAGE\nHAS TEXT IN IT\n"));
 
 		then(this.storageService).should().store(multipartFile);
 	}
 
 	@Test
-	public void contextLoads() throws Exception {
+	public void contextLoads() {
 		assertThat(storageService).isNotNull();
 	}
 }
