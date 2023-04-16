@@ -42,6 +42,19 @@ test {
 	jvmArgs = ["-DspringAot=false"]
 }
 
+graalvmNative {
+	testSupport = false
+}
+
 bootRun {
 	systemProperties = System.properties
+}
+
+afterEvaluate {
+	if (project.plugins.hasPlugin('org.springframework.experimental.aot')) {
+		generateTestAot.onlyIf { false }
+		test.configure { t ->
+			t.systemProperties.remove('spring.test.context.default.CacheAwareContextLoaderDelegate')
+		}
+	}
 }
