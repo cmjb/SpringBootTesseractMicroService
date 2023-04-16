@@ -1,6 +1,6 @@
 package dev.cmjb.main;
 
-import dev.cmjb.main.services.IStorageService;
+import dev.cmjb.main.services.UploadedFileService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,7 +24,7 @@ public class UploadedFileIntegrationTests {
     private TestRestTemplate restTemplate;
 
     @MockBean
-    private IStorageService storageService;
+    private UploadedFileService storageService;
 
     @Test
     public void shouldUploadFile() {
